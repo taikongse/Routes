@@ -1,0 +1,48 @@
+@use './AppExtras.scss'; // importing other sass/scss files
+@use 'sass:math'; // use Sass's math operators: + - * math.div() %, 
+
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+
+// Declaring variables in SASS/SCSS
+$primary-color: navy;
+
+%flex-centered-content { // a placeholder class, this won't take up space in your compiled css unless it's used with @include in your sass/scss code.
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin setColor($color) { // using mixin is like declaring functions
+  @if($color==green) { color: red } @else { color: $color }; // you can use conditionals. This mixin replaces the color `green` with `red`, just for demonstration purposes. 🥸
+}
+
+.default-container {
+  @include setColor($color: green); // use @include to use a mixin(aka function).
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  @extend %body-default;
+}
+
+.container {
+  @extend .default-container, %flex-centered-content; // use @extend to copy the attributes from other css-classes (with the `.`) or placeholder-classes(starts with `%`)
+  text-align: center;
+  vertical-align: center;
+}
+
+.main.container {
+  width: 100%;
+  //width: math.div(600px, 960px) * 100%; // Using sass math operators to set the width (600px / 960px) * 100% == 62.5%
+  background-color: rgba(255,255,255,0.6);
+  height: 100px;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 16px;
+  padding: 8;
+}

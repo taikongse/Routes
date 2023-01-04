@@ -1,0 +1,7 @@
+$bg-primary: #222;
+$text-color-default: white;
+
+%body-default {
+  color: $text-color-default;
+  background-color: $bg-primary;
+}
